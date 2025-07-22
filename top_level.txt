@@ -1,2 +1,2 @@
-_cffi_backend
-cffi
+_openssl
+cryptography
