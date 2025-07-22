@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGROX Token - Plataforma de Tokenização Agrícola</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flag-icon-css@4.1.7/css/flag-icons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Overlay de Gradiente Animado -->
+    <div class="gradient-overlay"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="/images/agrox-logo.svg" alt="AGROX Token" height="40">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#create-token">Criar Token</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#leaderboard">Leaderboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#staking">Staking</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <button id="connect-wallet-btn" class="btn btn-outline-light me-2">
+                        <i class="fas fa-wallet me-2"></i>Conectar Carteira
+                    </button>
+                    <div id="wallet-info" class="d-none">
+                        <span id="wallet-address" class="text-light me-2"></span>
+                        <span id="wallet-balance" class="badge bg-success"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold text-white">AGROX Token</h1>
+                    <h2 class="text-light">Tokenização do Agronegócio</h2>
+                    <p class="lead text-light">Conectando investidores a produtores agrícolas através da tecnologia blockchain.</p>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-start mt-4">
+                        <a href="#create-token" class="btn btn-primary btn-lg px-4 me-md-2">Criar Token</a>
+                        <a href="#leaderboard" class="btn btn-outline-light btn-lg px-4">Ver Leaderboard</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="hero-image-container">
+                        <img src="/images/hero-image.png" alt="AGROX Token" class="img-fluid">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Create Token Section -->
+    <section id="create-token" class="py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="display-5 fw-bold">Crie seu Token Agrícola</h2>
+                <p class="lead">Tokenize sua produção agrícola e atraia investidores para seu negócio</p>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <div class="card token-creation-card">
+                        <div class="card-body p-4">
+                            <form id="token-creation-form">
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <h4 class="mb-3">Informações Básicas</h4>
+                                        <div class="mb-3">
+                                            <label for="token-name" class="form-label">Nome do Token</label>
+                                            <input type="text" class="form-control" id="token-name" placeholder="Ex: Fazenda São João Soja">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="token-symbol" class="form-label">Símbolo do Token</label>
+                                            <input type="text" class="form-control" id="token-symbol" placeholder="Ex: FSJSOJA">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="token-type" class="form-label">Tipo de Produção</label>
+                                            <select class="form-select" id="token-type">
+                                                <option value="">Selecione o tipo</option>
+                                                <option value="SOYBEAN">Soja</option>
+                                                <option value="CORN">Milho</option>
+                                                <option value="SUGARCANE">Cana-de-açúcar</option>
+                                                <option value="COFFEE">Café</option>
+                                                <option value="COTTON">Algodão</option>
+                                                <option value="LIVESTOCK">Pecuária</option>
+                                                <option value="RICE">Arroz</option>
+                                                <option value="WHEAT">Trigo</option>
+                                                <option value="COCOA">Cacau</option>
+                                                <option value="RUBBER">Borracha</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="initial-supply" class="form-label">Fornecimento Inicial</label>
+                                            <input type="number" class="form-control" id="initial-supply" placeholder="Ex: 1000000">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h4 class="mb-3">Localização e Dimensões</h4>
+                                        <div class="mb-3">
+                                            <label for="farm-location" class="form-label">Localização da Fazenda</label>
+                                            <input type="text" class="form-control" id="farm-location" placeholder="Ex: Sorriso, MT">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="farm-country" class="form-label">País</label>
+                                            <select class="form-select" id="farm-country">
+                                                <option value="">Selecione o país</option>
+                                                <option value="BR">Brasil</option>
+                                                <option value="AR">Argentina</option>
+                                                <option value="US">Estados Unidos</option>
+                                                <option value="CA">Canadá</option>
+                                                <option value="AU">Austrália</option>
+                                                <option value="IN">Índia</option>
+                                                <option value="CN">China</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="farm-size" class="form-label">Tamanho da Fazenda (hectares)</label>
+                                            <input type="number" class="form-control" id="farm-size" placeholder="Ex: 500">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="social-networks" class="form-label">Redes Sociais</label>
+                                            <input type="text" class="form-control mb-2" id="social-instagram" placeholder="Instagram: @fazenda">
+                                            <input type="text" class="form-control" id="social-website" placeholder="Website: https://fazenda.com.br">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        <h4 class="mb-3">Imagem do Token</h4>
+                                        <div class="mb-3">
+                                            <label for="token-image" class="form-label">Faça upload da imagem do token</label>
+                                            <input type="file" class="form-control" id="token-image">
+                                        </div>
+                                        <div class="token-image-preview mt-3 text-center">
+                                            <img id="token-image-preview" src="/images/token-placeholder.png" alt="Preview" class="img-fluid rounded">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h4 class="mb-3">Imagens da Produção/Fazenda</h4>
+                                        <div class="mb-3">
+                                            <label for="farm-images" class="form-label">Faça upload das imagens da fazenda</label>
+                                            <input type="file" class="form-control" id="farm-images" multiple>
+                                        </div>
+                                        <div class="farm-images-preview mt-3 d-flex flex-wrap gap-2">
+                                            <div class="farm-image-placeholder">
+                                                <img src="/images/farm-placeholder.png" alt="Farm Preview" class="img-fluid rounded">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="alert alert-info">
+                                            <i class="fas fa-info-circle me-2"></i>
+                                            A criação de tokens consome tokens AGROX. Certifique-se de ter saldo suficiente em sua carteira.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                                    <button type="button" class="btn btn-outline-secondary btn-lg px-4 me-md-2">Cancelar</button>
+                                    <button type="submit" class="btn btn-primary btn-lg px-4">Criar Token</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leaderboard Section -->
+    <section id="leaderboard" class="py-5 bg-light">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="display-5 fw-bold">Leaderboard</h2>
+                <p class="lead">Acompanhe os tokens agrícolas com melhor desempenho</p>
+            </div>
+
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fas fa-filter"></i></span>
+                        <select class="form-select" id="token-type-filter">
+                            <option value="">Todos os Tipos</option>
+                            <option value="SOYBEAN">Soja</option>
+                            <option value="CORN">Milho</option>
+                            <option value="SUGARCANE">Cana-de-açúcar</option>
+                            <option value="COFFEE">Café</option>
+                            <option value="LIVESTOCK">Pecuária</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text"><i class="fas fa-globe"></i></span>
+                        <select class="form-select" id="country-filter">
+                            <option value="">Todos os Países</option>
+                            <option value="BR">Brasil</option>
+                            <option value="AR">Argentina</option>
+                            <option value="US">Estados Unidos</option>
+                            <option value="CA">Canadá</option>
+                            <option value="AU">Austrália</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <ul class="nav nav-tabs mb-4" id="leaderboardTabs" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active" id="marketcap-tab" data-bs-toggle="tab" data-bs-target="#marketcap" type="button" role="tab">
+                        <i class="fas fa-chart-pie me-2"></i>Market Cap
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="winners-tab" data-bs-toggle="tab" data-bs-target="#winners" type="button" role="tab">
+                        <i class="fas fa-trophy me-2"></i>Maiores Ganhadores
+                    </button>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="leaderboardTabContent">
+                <div class="tab-pane fade show active" id="marketcap" role="tabpanel">
+                    <div class="card">
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Token</th>
+                                            <th scope="col">Tipo</th>
+                                            <th scope="col">País</th>
+                                            <th scope="col">Preço</th>
+                                            <th scope="col">Variação 24h</th>
+                                            <th scope="col">Market Cap</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="marketcap-table">
+                                        <!-- Dados serão carregados via JavaScript -->
+                                        <tr class="token-row">
+                                            <td>1</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="/images/token-placeholder.png" alt="Token" class="token-icon me-2">
+                                                    <div>
+                                                        <div class="fw-bold">Fazenda Verde Soja</div>
+                                                        <div class="text-muted">FVSOJA</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="/images/commodities/soybean.svg" alt="Soja" class="commodity-icon me-2">
+                                                    <span>Soja</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="flag-icon flag-icon-br me-1"></span> Brasil</td>
+                                            <td>$1.25</td>
+                                            <td class="text-success">+5.2%</td>
+                                            <td>$1,250,000</td>
+                                        </tr>
+                                        <tr class="token-row">
+                                            <td>2</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="/images/token-placeholder.png" alt="Token" class="token-icon me-2">
+                                                    <div>
+                                                        <div class="fw-bold">Café Montanhas</div>
+                                                        <div class="text-muted">CAFEMT</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="/images/commodities/coffee.svg" alt="Café" class="commodity-icon me-2">
+                                                    <span>Café</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="flag-icon flag-icon-br me-1"></span> Brasil</td>
+                                            <td>$0.85</td>
+                                            <td class="text-danger">-1.8%</td>
+                                            <td>$850,000</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="winners" role="tabpanel">
+                    <div class="card">
+                        <div class="card-body p-0">
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Token</th>
+                                            <th scope="col">Tipo</th>
+                                            <th scope="col">País</th>
+                                            <th scope="col">Preço</th>
+                                            <th scope="col">Variação 24h</th>
+                                            <th scope="col">Market Cap</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="winners-table">
+                                        <!-- Dados serão carregados via JavaScript -->
+                                        <tr class="token-row">
+                                            <td>1</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="/images/token-placeholder.png" alt="Token" class="token-icon me-2">
+                                                    <div>
+                                                        <div class="fw-bold">Cana Dourada</div>
+                                                        <div class="text-muted">CANAD</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="/images/commodities/sugarcane.svg" alt="Cana-de-açúcar" class="commodity-icon me-2">
+                                                    <span>Cana-de-açúcar</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="flag-icon flag-icon-br me-1"></span> Brasil</td>
+                                            <td>$0.45</td>
+                                            <td class="text-success">+12.5%</td>
+                                            <td>$450,000</td>
+                                        </tr>
+                                        <tr class="token-row">
+                                            <td>2</td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="/images/token-placeholder.png" alt="Token" class="token-icon me-2">
+                                                    <div>
+                                                        <div class="fw-bold">Gado Premium</div>
+                                                        <div class="text-muted">GADOP</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="/images/commodities/livestock.svg" alt="Pecuária" class="commodity-icon me-2">
+                                                    <span>Pecuária</span>
+                                                </div>
+                                            </td>
+                                            <td><span class="flag-icon flag-icon-ar me-1"></span> Argentina</td>
+                                            <td>$0.75</td>
+                                            <td class="text-success">+8.3%</td>
+                                            <td>$750,000</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Staking Section -->
+    <section id="staking" class="py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5">
+                <h2 class="display-5 fw-bold">Staking AGROX</h2>
+                <p class="lead">Bloqueie seus tokens AGROX e ganhe rendimentos baseados em commodities agrícolas</p>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Opções de Staking</h4>
+                            
+                            <div class="row">
+                                <div class="col-md-4 mb-4">
+                                    <div class="staking-option-card">
+                                        <div class="staking-option-header">
+                                            <img src="/images/commodities/sugarcane.svg" alt="Cana-de-açúcar" class="commodity-icon">
+                                            <h5>Cana-de-açúcar</h5>
+                                        </div>
+                                        <div class="staking-option-body">
+                                            <div class="apy-badge">
+                                                <span class="apy-value">12%</span>
+                                                <span class="apy-label">APY</span>
+                                            </div>
+                                            <div class="live-indicator">
+                                                <span class="live-dot"></span>
+                                                <span class="live-text">LIVE</span>
+                                            </div>
+                                            <button class="btn btn-outline-primary btn-sm w-100 mt-3">Fazer Staking</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-4">
+                                    <div class="staking-option-card">
+                                        <div class="staking-option-header">
+                                            <img src="/images/commodities/coffee.svg" alt="Café" class="commodity-icon">
+                                            <h5>Café</h5>
+                                        </div>
+                                        <div class="staking-option-body">
+                                            <div class="apy-badge">
+                                                <span class="apy-value">15%</span>
+                                                <span class="apy-label">APY</span>
+                                            </div>
+                                            <div class="live-indicator">
+                                                <span class="live-dot"></span>
+                                                <span class="live-text">LIVE</span>
+                                            </div>
+                                            <button class="btn btn-outline-primary btn-sm w-100 mt-3">Fazer Staking</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-4">
+                                    <div class="staking-option-card">
+                                        <div class="staking-option-header">
+                                            <img src="/images/commodities/soybean.svg" alt="Soja" class="commodity-icon">
+                                            <h5>Soja</h5>
+                                        </div>
+                                        <div class="staking-option-body">
+                                            <div class="apy-badge">
+                                                <span class="apy-value">18%</span>
+                                                <span class="apy-label">APY</span>
+                                            </div>
+                                            <div class="live-indicator">
+                                                <span class="live-dot"></span>
+                                                <span class="live-text">LIVE</span>
+                                            </div>
+                                            <button class="btn btn-outline-primary btn-sm w-100 mt-3">Fazer Staking</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-4">
+                                    <div class="staking-option-card">
+                                        <div class="staking-option-header">
+                                            <img src="/images/commodities/livestock.svg" alt="Pecuária" class="commodity-icon">
+                                            <h5>Pecuária</h5>
+                                        </div>
+                                        <div class="staking-option-body">
+                                            <div class="apy-badge">
+                                                <span class="apy-value">14%</span>
+                                                <span class="apy-label">APY</span>
+                                            </div>
+                                            <div class="live-indicator">
+                                                <span class="live-dot"></span>
+                                                <span class="live-text">LIVE</span>
+                                            </div>
+                                            <button class="btn btn-outline-primary btn-sm w-100 mt-3">Fazer Staking</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-4">
+                                    <div class="staking-option-card">
+                                        <div class="staking-option-header">
+                                            <img src="/images/commodities/basket.svg" alt="Cesta de Diversidade" class="commodity-icon">
+                                            <h5>Cesta de Diversidade</h5>
+                                        </div>
+                                        <div class="staking-option-body">
+                                            <div class="apy-badge">
+                                                <span class="apy-value">16%</span>
+                                                <span class="apy-label">APY</span>
+                                            </div>
+                                            <div class="live-indicator">
+                                                <span class="live-dot"></span>
+                                                <span class="live-text">LIVE</span>
+                                            </div>
+                                            <button class="btn btn-outline-primary btn-sm w-100 mt-3">Fazer Staking</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Calculadora de Rendimento</h4>
+                            <form id="apy-calculator-form">
+                                <div class="mb-3">
+                                    <label for="staking-amount" class="form-label">Quantidade de AGROX</label>
+                                    <input type="number" class="form-control" id="staking-amount" placeholder="Ex: 1000">
+                                </div>
+                                <div class="mb-3">
+                                    <label for="staking-type" class="form-label">Tipo de Staking</label>
+                                    <select class="form-select" id="staking-type">
+                                        <option value="SUGARCANE">Cana-de-açúcar (12% APY)</option>
+                                        <option value="COFFEE">Café (15% APY)</option>
+                                        <option value="SOY">Soja (18% APY)</option>
+                                        <option value="LIVESTOCK">Pecuária (14% APY)</option>
+                                        <option value="BASKET">Cesta de Diversidade (16% APY)</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="staking-duration" class="form-label">Duração (dias)</label>
+                                    <input type="range" class="form-range" id="staking-duration" min="30" max="365" step="30" value="180">
+                                    <div class="d-flex justify-content-between">
+                                        <span>30 dias</span>
+                                        <span id="duration-value">180 dias</span>
+                                        <span>365 dias</span>
+                                    </div>
+                                </div>
+                                <button type="button" id="calculate-apy" class="btn btn-primary w-100">Calcular</button>
+                            </form>
+                            
+                            <div id="apy-results" class="mt-4 d-none">
+                                <div class="card bg-light">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Resultados Projetados</h5>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Investimento Inicial:</span>
+                                            <span id="initial-investment">1000 AGROX</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>APY:</span>
+                                            <span id="apy-rate">16%</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Duração:</span>
+                                            <span id="duration">180 dias</span>
+                                        </div>
+                                        <hr>
+                                        <div class="d-flex justify-content-between mb-2">
+                                            <span>Rendimento Projetado:</span>
+                                            <span id="projected-yield" class="text-success">78.9 AGROX</span>
+                                        </div>
+                                        <div class="d-flex justify-content-between fw-bold">
+                                            <span>Total ao Final:</span>
+                                            <span id="total-return">1078.9 AGROX</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" id="stake-now" class="btn btn-success w-100 mt-3">Fazer Staking Agora</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4 mb-lg-0">
+                    <img src="/images/agrox-logo.svg" alt="AGROX Token" height="40" class="mb-3">
+                    <p class="text-light">Conectando investidores a produtores agrícolas através da tecnologia blockchain.</p>
+                    <div class="social-links">
+                        <a href="#" class="me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-discord"></i></a>
+                        <a href="#" class="me-2"><i class="fab fa-medium"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4 mb-md-0">
+                    <h5 class="text-light mb-3">Navegação</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#home">Início</a></li>
+                        <li class="mb-2"><a href="#create-token">Criar Token</a></li>
+                        <li class="mb-2"><a href="#leaderboard">Leaderboard</a></li>
+                        <li class="mb-2"><a href="#staking">Staking</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4 mb-md-0">
+                    <h5 class="text-light mb-3">Recursos</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#">Documentação</a></li>
+                        <li class="mb-2"><a href="#">Whitepaper</a></li>
+                        <li class="mb-2"><a href="#">Roadmap</a></li>
+                        <li class="mb-2"><a href="#">Parcerias</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4">
+                    <h5 class="text-light mb-3">Contato</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="mailto:contato@agroxtoken.com">contato@agroxtoken.com</a></li>
+                        <li class="mb-2"><a href="#">Suporte</a></li>
+                        <li class="mb-2"><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-4 mb-3 border-light">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="text-light mb-0">&copy; 2025 AGROX Token. Todos os direitos reservados.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end mt-3 mt-md-0">
+                    <a href="#" class="text-light me-3">Termos de Uso</a>
+                    <a href="#" class="text-light">Política de Privacidade</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Conexão de Carteira -->
+    <div class="modal fade" id="walletModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Conectar Carteira</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="wallet-options">
+                        <div class="wallet-option" data-wallet="metamask">
+                            <img src="/images/wallets/metamask.svg" alt="MetaMask">
+                            <span>MetaMask</span>
+                        </div>
+                        <div class="wallet-option" data-wallet="walletconnect">
+                            <img src="/images/wallets/walletconnect.svg" alt="WalletConnect">
+                            <span>WalletConnect</span>
+                        </div>
+                        <div class="wallet-option" data-wallet="trustwallet">
+                            <img src="/images/wallets/trustwallet.svg" alt="Trust Wallet">
+                            <span>Trust Wallet</span>
+                        </div>
+                        <div class="wallet-option" data-wallet="binance">
+                            <img src="/images/wallets/binance.svg" alt="Binance Wallet">
+                            <span>Binance Wallet</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="/js/main.js"></script>
+</body>
+</html>
